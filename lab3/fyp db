@@ -1,0 +1,130 @@
+#############################################################
+
+README from ftp://ftp.ncbi.nih.gov/genomes/INFLUENZA/  
+
+updated: May 15, 2012
+
+#############################################################
+
+This directory has been created to distribute data generated for the NCBI
+Influenza Virus Sequence Database (http://www.ncbi.nlm.nih.gov/genomes/FLU/Database/select.cgi?go=database).
+
+The NCBI Influenza Virus Sequence Database contains nucleotide sequences, protein sequences and
+their encoding regions of all influenza viruses in GenBank, including the complete genome sequences
+from the NIAID Influenza Genome Sequencing Project
+(http://www.niaid.nih.gov/labsandresources/resources/gsc/influenza/Pages/default.aspx).  Information for database fields
+(subtype, segment/protein, host, country, year etc.) are extracted automatically from GenBank records, and
+examined by NCBI staff.  Information not available in GenBank records are obtained from literature
+or direct contact with sequence submitters, whenever possible.  For some sequences from the NIAID
+project, additional patient information are available.
+
+This directory contains the following files:
+
+genomeset.dat - Table with supplementary genomeset data
+influenza_na.dat - Table with supplementary nucleotide data
+influenza_aa.dat - Table with supplementary protein data
+influenza.dat - Table with nucleotide, protein and coding regions IDs
+influenza.fna - FASTA nucleotide
+influenza.cds - FASTA coding regions
+influenza.faa - FASTA protein
+README
+
+The genomeset.dat contains information for sequences of viruses with a complete set of segments in full-length (or nearly
+full-length).  Those of the same virus are grouped together and separated by an empty line from those of other viruses.
+
+The genomeset.dat, influenza_na.dat and influenza_aa.dat files are tab-delimitated tables which have the following fields:
+GenBank accession number	Host	Genome segment number or protein name	Subtype	Country	Year/month/date	Sequence length	Virus name	Age	Gender
+
+The influenza_na.dat and influenza_aa.dat files have an additional field in the last column to indicate the completeness of a sequence - "c" for complete sequences that include
+start and stop codons; "nc" for nearly complete sequences that are missing only start and/or stop codons; "p" for partial sequences.
+
+The influenza.dat file is a tab-delimitated table which has the following fields:
+GenBank accession number for nucleotide	GenBank accession number for protein	Identifier for protein coding region
+The second and the third fields will be repeated if a nucleotide sequence encodes more than one protein.  The protein accession numbers are not listed
+in any particular order.
+
+A directory named "updates" contains daily updates for all of the above listed files in subdirectories for each date.
+
+A directory named "ANNOTATION" contains reference sequences used in the Influenza Virus Sequence Annotation Tool
+(http://www.ncbi.nlm.nih.gov/genomes/FLU/Database/annotation.cgi).  The file blastDB.fasta has one representative sequence for each type/segment/subtype of
+influenza viruses A, B and C, and it is used to build a specialized BLAST database for the determination of type/segment/subtype of input influenza
+virus sequences.  The PROTEIN-A, PROTEIN-B and PROTEIN-C subdirectories each contains sample protein and mature peptide sequences used to annotate
+user-provided sequences.
+
+For questions about files within this directory, please send an email to: genomes@ncbi.nlm.nih.gov
+
+CREATE TABLE influenza (
+accession_nucleotide varchar(20) PRIMARY KEY NOT NULL UNIQUE,
+accession_protein varchar(20),
+protein_code_id varchar(50),
+accession_protein2 varchar(20),
+protein_code_id2 varchar(50),
+accession_protein3 varchar(20),
+protein_code_id3 varchar(50)
+);
+
+CREATE TABLE genomeset (
+accession varchar(20) PRIMARY KEY NOT NULL UNIQUE,
+host varchar(20),
+protein varchar(10),
+subtype varchar(10),
+country varchar(50),
+date varchar(15),
+length int,
+virus_name varchar(200),
+age varchar(30),
+gender varchar(15),
+col int
+);
+
+
+CREATE TABLE influenza_aa (
+accession varchar(20) PRIMARY KEY NOT NULL UNIQUE,
+host varchar(20),
+protein varchar(10),
+subtype varchar(10),
+country varchar(50),
+date varchar(15),
+length int,
+virus_name varchar(200),
+age varchar(30),
+gender varchar(15),
+complete varchar(5)
+);
+
+CREATE TABLE influenza_na (
+accession varchar(20) PRIMARY KEY NOT NULL UNIQUE,
+host varchar(20),
+protein varchar(10),
+subtype varchar(10),
+country varchar(50),
+date varchar(15),
+length int,
+virus_name varchar(200),
+age varchar(30),
+gender varchar(15),
+complete varchar(5)
+);
+
+LOAD DATA LOCAL INFILE 'influenza_aa.dat' INTO TABLE influenza_aa
+	FIELDS TERMINATED BY '\t' 
+	LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE 'influenza_na.dat' INTO TABLE influenza_na
+	FIELDS TERMINATED BY '\t' 
+	LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE 'genomeset.dat' INTO TABLE genomeset
+	FIELDS TERMINATED BY '\t' 
+	LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE 'influenza.dat' INTO TABLE influenza
+	FIELDS TERMINATED BY '\t' 
+	LINES TERMINATED BY '\n';
+
+	
+
+GenBank accession number	Host	Genome segment number or protein name	Subtype	Country	Year/month/date	Sequence length	Virus name	Age	Gender
+
+COPY influenza_aa FROM '/Users/weishenho/environments/cele/celv/influenza_aa.dat' (DELIMITER E'\t');
+

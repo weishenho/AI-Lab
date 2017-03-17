@@ -1,0 +1,19 @@
+( \+ mythical(x) ; immortal(x) ) , ( mythical(x) ; mammal(x) ) , ( \+ immortal(x) , \+ mammal(x) ; horned(x) ) , ( \+ horned(x) ; magical(x) ) 
+
+
+( \+ mythical(x) ; immortal(x) ) , ( mythical(x) ; mammal(x) ) , ( \+ immortal(x) , \+ mammal(x) ; horned(x) ) , ( \+ horned(x) ; magical(x) ) 
+
+
+( \+ mythical(x) ; immortal(x) ) ,
+( mythical(x) ; \+ immortal(x) ) ,
+( mythical(x) ; mammal(x) ) ,
+( \+ immortal(x) ; horned(x) ) ,
+( \+ mammal(x) ; horned(x) ) ,
+( \+ horned(x) ; magical(x) ) ,
+\+ magical(x) .
+
+four_bit_full_adder(0, 0, 0, 0, 1, 0, 0, 0, 1, S0, S1, S2, S3, Cout).
+four_bit_full_adder(Cin, A3, A2, A1, A0, 0, 0, 0, 1, 0, 0, 1, 0, 1).
+four_bit_full_adder(Cin, A3, A2, A1, A0, 0, 0, 0, 1, 0, 0, 1, 0, 1).
+four_bit_full_substr(1, 0, 0, 0, 1, 0, 0, 0, 1, S0, S1, S2, S3, Cout).
+four_bit_full_substr(1, 0, 0, 0, 1, 0, 0, 0, 1, S0, S1, S2, S3, Cout).

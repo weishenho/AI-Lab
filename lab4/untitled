@@ -1,0 +1,30 @@
+spouse(mae_robertson, guy_holloway).
+human_wife(terrell_kennedya, lee_jenkins).
+
+human_couple(terrell_kennedya, lee_jenkins).
+
+human_couple(roger_mccormick, iris_tucker).
+
+human_siblings(roger_mccormick, iris_tucker).
+
+human_siblings(guadalupe_spencer, todd_glover).
+
+human_siblings(guadalupe_spencer, luz_schultz).
+
+sister_of_human(luz_schultz, guadalupe_spencer).
+
+ancestor(guy_holloway, todd_glover).
+
+ancestor(guy_holloway, meredith_elliott).
+
+cyborg_ancestor(linda_owens, meredith_elliott).
+
+cyborg_ancestor(linda_owens, lee_jenkins).
+
+cyborg_family(guy_holloway, mae_robertson, lee_jenkins).
+
+descendant(todd_glover, terrell_kennedy).
+
+descendant(sophia_schmidt, terrell_kennedy).
+
+is_human_child_of_cyborg_parent(H)

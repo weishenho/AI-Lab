@@ -1,2 +1,2 @@
 # AI-Lab
-AI lab assignments
+NTU Comp Sci. AI lab assignments Solution
